@@ -115,3 +115,25 @@ console.log('Total number of days emp worked = '+dailyEmpWageArr.reduce(getNumbe
 //UC8 - Using Map
 console.log("\nStore day with daily wage using map");
 console.log("Total Wage using map : "+Array.from(dailyEmpWageMap.values()).reduce(totalWageUsingReduce,0));
+<<<<<<< HEAD
+=======
+//UC9-get all type of workingdays
+let nonWorkingDays = new Array();
+let partWorkingDays = new Array();
+let FullWorkingDays = new Array();
+console.log("UC9 get all type of workingdays");
+dailyEmpWageMap.forEach((value,key,map) =>
+{
+    if(value==160)
+        FullWorkingDays.push(key);
+    else if(value==80)
+        partWorkingDays.push(key);
+    else
+        nonWorkingDays.push(key);
+
+});
+console.log(dailyEmpWageMap);
+console.log('part time working days: '+partWorkingDays.toString());
+console.log('full time working days: '+FullWorkingDays.toString());
+console.log('non working days: '+nonWorkingDays.toString());
+>>>>>>> UC9_ArrowFunction
