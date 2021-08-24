@@ -49,4 +49,63 @@ console.log(dailyEmpWageArr.toString());
 console.log('Total days = '+(day-1));
 console.log('Total emp hours = '+totalEmpHrs);
 let totalWage = calculateWage(totalEmpHrs);
+console.log("Total wage without for each and reduce");
 console.log('Total Wage = '+totalWage);
+
+//Uc7-a Using for each and reduce
+let totalWageUsingForEach=0;
+//function to sum up total wage and daily wage using foreach
+let sumWages = (dailyWages) =>totalWageUsingForEach += dailyWages;
+//function to calculate total wage with current wage using reduce
+let totalWageUsingReduce = (totalWage,currentWage) => totalWage + currentWage;
+
+//Uc 7-A
+console.log("Total wage using Foreach");
+//use foreach in array
+dailyEmpWageArr.forEach(sumWages);
+console.log('Total Wage using Foreach = '+totalWageUsingForEach);
+console.log("Total wage using Reduce");
+console.log('Total Wage using Reduce = '+dailyEmpWageArr.reduce(totalWageUsingReduce,0));
+
+//Uc 7-b
+console.log("Map day with daily wage");
+let dayCounter = 0;
+//function to map day with daily wage
+let mapDaywithDailyWage = (dailyWage) => 'Day = '+(++dayCounter)+ ' => wage = '+dailyWage;
+//map function used to map each element with day in array
+let dayWithDailyWageMapArr = dailyEmpWageArr.map(mapDaywithDailyWage);
+console.log(dayWithDailyWageMapArr);
+
+//Uc 7-C
+console.log("Show full working day Wages Alone - Filter");
+//functiong to get full working days wages
+let getFullWorkingDayWages = (dailyWage) => dailyWage.includes("160");//returns if values matches with given value
+//array using filter function used to filter the array based on given condition
+let FullWorkingDayWagesArr = dayWithDailyWageMapArr.filter(getFullWorkingDayWages);
+console.log(FullWorkingDayWagesArr);
+
+//Uc7D
+console.log("Find first occurence of full time wage - Find");
+console.log('First occurance of full working day : '+dayWithDailyWageMapArr.find(getFullWorkingDayWages));
+
+//Uc7E
+console.log("Check every element truly holding full time wages of employees - every");
+console.log(FullWorkingDayWagesArr.every(getFullWorkingDayWages)?`Every element is holding correct value`:`Not every element holding correct value`);
+
+//Uc7F
+console.log("Check whether it holds some part time wages - some");
+//function to check wages matches parttime wages
+let getPartTimeWorkingDayWages = (dailyWage) => dailyWage.includes("80");//returns if values matches with given value
+//check wheter it has using some
+console.log(dayWithDailyWageMapArr.some(getPartTimeWorkingDayWages)?"It Has some part time wages":"It doesn't Has some part time wages");
+
+//Uc7G
+
+console.log("Get the number of days emp worked - reduce");
+let getNumberOfDaysEmpWorked = (numOfDays,dailyWage) =>
+{   
+    if(dailyWage>0)
+        return numOfDays+1;
+    return numOfDays;
+} 
+console.log('Total number of days emp worked = '+dailyEmpWageArr.reduce(getNumberOfDaysEmpWorked,0));
