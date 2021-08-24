@@ -150,3 +150,19 @@ console.log('non working days: '+nonWorkingDays.toString());
 //UC10 store items in object and store that object in array
 console.log("Uc10 - store items in object and store that object in array");
 console.log('Day,DailyHrs,Dailywage in obj\n'+dayWageHoursObjArr);
+//UC11
+//Total wage
+let totalEmpWage = dayWageHoursObjArr.filter(x =>x.dailyWage>0).reduce((wage,x)=> wage+= x.dailyWage,0);
+//Total Hrs
+let totalEmpHrss = dayWageHoursObjArr.filter(x =>x.dailyEmpHrs>0).reduce((hrs,x)=> hrs+= x.dailyEmpHrs,0);
+console.log('Total Emp Wage:  '+totalEmpWage);
+console.log('Total Emp hrs: ' +totalEmpHrss);
+//UC11-b
+//print full working days
+dayWageHoursObjArr.filter(x=>x.dailyEmpHrs==8).forEach(x => console.log(x.toString()));
+//UC11-C
+let partTimeStrArr = dayWageHoursObjArr.filter(x=>x.dailyEmpHrs==4).map(x=> x.toString());
+console.log(partTimeStrArr);
+//UC11-D
+let nonWorkingDaysValue = dayWageHoursObjArr.filter(x=>x.dailyEmpHrs==0).map(x => x.Day);
+console.log(nonWorkingDaysValue);
