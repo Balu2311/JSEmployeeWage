@@ -16,15 +16,23 @@ class EmployeePayroll
         this.startDate = parameters[4];
     }
     //getter and setter methods for properties of class
-    get id() {return this.id};
-    set id(id){this.id=id};
+    get id() {return this._id};
+    set id(id)
+    {
+        //pattern for id for positive numbers
+        let idPattern = new RegExp('^[1-9]\d*$');
+        if(idPattern.test(id))
+            this._id = id;
+        else
+            throw "Error! id format is incorrect";
+    };
     get name() { return this._name};
     set name(name)
     {
         //validating name while setting using regex
-        let regex = new RegExp('^[A-Z]{1}[a-z]{2,}$');
+        let namePattern = new RegExp('^[A-Z]{1}[a-z]{2,}$');
         
-        if(regex.test(name))
+        if(namePattern.test(name))
             this._name = name;
             
         else
@@ -33,9 +41,38 @@ class EmployeePayroll
          
     };
 
-    get salary() {return this.salary};
-    set salary(salary) { this.salary = salary};
-    
+    get salary() {return this._salary};
+    set salary(salary) 
+    {
+          //pattern for salary for positive numbers
+        let salaryPattern = new RegExp('^[1-9][0-9]*$');
+        if(salaryPattern.test(salary))
+            this._salary = salary;
+        else
+            throw "Error! salary format is incorrect";
+         
+    };
+    get gender() { return this._gender};
+    set gender(gender)
+    {
+        //pattern for gender either M or F
+        let genderPattern = new RegExp('M|F');
+        if(genderPattern.test(gender))
+            this._gender=gender;
+        else
+            throw "Error! gender format is incorrect";
+    }
+    get startDate(){return this._startDate};
+    set startDate(date)
+    {
+        //Givendate should not exceed todays date
+        let givenDate = new Date(date); //mm-dd-YYYY
+        let today = new Date();
+        if(givenDate<=today)
+            this._startDate=date;
+        else
+            throw "Error! Date is greater than current date";
+    }
     //methid to return everything in string
     toString()
     {
@@ -53,6 +90,8 @@ try
     empPayroll.id=2;
     empPayroll.name = "Balu";
     empPayroll.salary = 10000;
+    empPayroll.gender = 'M';
+    empPayroll.startDate = '07-12-2021';//MM-DD-YYYY
     console.log(empPayroll.toString());
 }
 catch(e)
