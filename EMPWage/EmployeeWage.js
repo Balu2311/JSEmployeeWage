@@ -23,20 +23,30 @@ function getWorkHours()
         return 8
     }
 }
+let totalEmpHrs = 0;
 for(let i=0;i<MAX_WORKING_DAYS_IN_MONTH;i++)
 {
-    empHrs += getWorkHours();
+    totalEmpHrs += getWorkHours();
 }
-let totalWage = empHrs*WAGE_PER_HR;
-console.log('\nTotal Wage = '+totalWage);
+let calculateWage = (empHrs) =>
+{
+    return empHrs*WAGE_PER_HR;
+}
 
 let day=0;
-empHrs =0;
-while(day++ <MAX_WORKING_DAYS_IN_MONTH && empHrs<=MAX_WORKING_HRS_IN_MONTH)
+totalEmpHrs =0;
+//Array to store daily wage of employee
+let dailyEmpWageArr = new Array();
+while(day++ <MAX_WORKING_DAYS_IN_MONTH && totalEmpHrs<=MAX_WORKING_HRS_IN_MONTH)
 {
-    empHrs += getWorkHours();
+    let empHrs = getWorkHours();
+    totalEmpHrs += empHrs;
+    dailyEmpWageArr.push(calculateWage(empHrs));
+
 }
-console.log('\ntotal days = '+(day-1));
-console.log('total emp hours = '+empHrs);
-let totalWage1 = empHrs*WAGE_PER_HR;
-console.log('Total Wage1 = '+totalWage1);
+console.log("Daily Emp wages");
+console.log(dailyEmpWageArr.toString());
+console.log('Total days = '+(day-1));
+console.log('Total emp hours = '+totalEmpHrs);
+let totalWage = calculateWage(totalEmpHrs);
+console.log('Total Wage = '+totalWage);
