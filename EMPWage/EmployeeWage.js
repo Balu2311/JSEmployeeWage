@@ -38,13 +38,26 @@ totalEmpHrs =0;
 //Array to store daily wage of employee
 let dailyEmpWageArr = new Array();
 let dailyEmpWageMap = new Map();
+let dayWageHoursObjArr = new Array();
 while(day++ <MAX_WORKING_DAYS_IN_MONTH && totalEmpHrs<=MAX_WORKING_HRS_IN_MONTH)
 {
     let empHrs = getWorkHours();
     totalEmpHrs += empHrs;
-    dailyEmpWageArr.push(calculateWage(empHrs));
+    let dailyWage = calculateWage(empHrs);
+    dailyEmpWageArr.push(dailyWage);
     //setting the map
-    dailyEmpWageMap.set(day,calculateWage(empHrs));
+    dailyEmpWageMap.set(day,dailyWage);
+    dayWageHoursObjArr.push(
+        {
+            Day:day,
+            dailyEmpHrs:empHrs,
+            dailyWage:dailyWage,
+            toString()
+            {
+                return 'Day: '+this.Day+'  WorkingHrs: '+this.dailyEmpHrs+'  Wage: '+this.dailyWage;
+            }
+    
+        });
 
 }
 console.log("Daily Emp wages");
@@ -115,8 +128,6 @@ console.log('Total number of days emp worked = '+dailyEmpWageArr.reduce(getNumbe
 //UC8 - Using Map
 console.log("\nStore day with daily wage using map");
 console.log("Total Wage using map : "+Array.from(dailyEmpWageMap.values()).reduce(totalWageUsingReduce,0));
-<<<<<<< HEAD
-=======
 //UC9-get all type of workingdays
 let nonWorkingDays = new Array();
 let partWorkingDays = new Array();
@@ -136,4 +147,6 @@ console.log(dailyEmpWageMap);
 console.log('part time working days: '+partWorkingDays.toString());
 console.log('full time working days: '+FullWorkingDays.toString());
 console.log('non working days: '+nonWorkingDays.toString());
->>>>>>> UC9_ArrowFunction
+//UC10 store items in object and store that object in array
+console.log("Uc10 - store items in object and store that object in array");
+console.log('Day,DailyHrs,Dailywage in obj\n'+dayWageHoursObjArr);
