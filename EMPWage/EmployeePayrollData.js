@@ -4,12 +4,16 @@ class EmployeePayroll
     id;
     name;
     salary;
+    gender;
+    startDate;
     //defining constructor of class using constructor keeyword
-    constructor(id,name,salary)
+    constructor(...parameters)
     {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
+        this.id = parameters[0];
+        this.name = parameters[1];
+        this.salary = parameters[2];
+        this.gender = parameters[3];
+        this.startDate = parameters[4];
     }
     //getter and setter methods for properties of class
     get id() {return this.id};
@@ -23,7 +27,7 @@ class EmployeePayroll
     //methid to return everything in string
     toString()
     {
-        return 'Id: '+this.id+' Name: '+this.name+' Salary: '+this.salary
+        return 'Id: '+this.id+' Name: '+this.name+' Salary: '+this.salary+' Gender: '+this.gender+' StartDate: '+this.startDate
     }
 
 }
@@ -35,3 +39,6 @@ empPayroll.id=2;
 empPayroll.name = "Balu";
 empPayroll.salary = 10000;
 console.log(empPayroll.toString());
+//extend gender and start date
+let emp = new EmployeePayroll(3,"Bhanu",11000,'M',new Date());
+console.log(emp.toString());
