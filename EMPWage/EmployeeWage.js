@@ -109,3 +109,6 @@ let getNumberOfDaysEmpWorked = (numOfDays,dailyWage) =>
     return numOfDays;
 } 
 console.log('Total number of days emp worked = '+dailyEmpWageArr.reduce(getNumberOfDaysEmpWorked,0));
+//UC8 - Using Map
+console.log("\nStore day with daily wage using map");
+console.log("Total Wage using map : "+Array.from(dailyEmpWageArr.values()).reduce(totalWageUsingReduce,0));
